@@ -1,0 +1,60 @@
+{
+  "_about": "Open, free news feeds Granthalaya reads. Every outlet is listed with how it is funded and its Wikidata item, so the bias meter can show owners and funders with links. funding: public (licence fee or public grant, editorially independent by charter), state (government-owned or government-funded), nonprofit, commercial. paywall: true if most articles need a subscription. Feed URLs checked 2026-11-06.",
+  "outlets": [
+    { "id": "bbc", "name": "BBC News", "country": "United Kingdom", "funding": "public", "qid": "Q1160945", "paywall": false,
+      "feeds": [
+        { "url": "https://feeds.bbci.co.uk/news/world/rss.xml", "section": "world" },
+        { "url": "https://feeds.bbci.co.uk/news/business/rss.xml", "section": "business" },
+        { "url": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml", "section": "science" },
+        { "url": "https://feeds.bbci.co.uk/news/technology/rss.xml", "section": "technology" }
+      ] },
+    { "id": "dw", "name": "Deutsche Welle", "country": "Germany", "funding": "state", "qid": "Q153770", "paywall": false,
+      "feeds": [ { "url": "https://rss.dw.com/rdf/rss-en-all", "section": "world" } ] },
+    { "id": "france24", "name": "France 24", "country": "France", "funding": "state", "qid": "Q166180", "paywall": false,
+      "feeds": [ { "url": "https://www.france24.com/en/rss", "section": "world" } ] },
+    { "id": "rfi", "name": "Radio France Internationale", "country": "France", "funding": "state", "qid": "Q19912", "paywall": false,
+      "feeds": [ { "url": "https://www.rfi.fr/en/rss", "section": "world" } ] },
+    { "id": "npr", "name": "NPR", "country": "United States", "funding": "nonprofit", "qid": "Q671510", "paywall": false,
+      "feeds": [
+        { "url": "https://feeds.npr.org/1004/rss.xml", "section": "world" },
+        { "url": "https://feeds.npr.org/1008/rss.xml", "section": "culture" }
+      ] },
+    { "id": "pbs", "name": "PBS News", "country": "United States", "funding": "public", "qid": "Q7118447", "paywall": false,
+      "feeds": [ { "url": "https://www.pbs.org/newshour/feeds/rss/headlines", "section": "world" } ] },
+    { "id": "cbc", "name": "CBC News", "country": "Canada", "funding": "public", "qid": "Q2931014", "paywall": false,
+      "feeds": [ { "url": "https://www.cbc.ca/webfeed/rss/rss-world", "section": "world" } ] },
+    { "id": "abc_au", "name": "ABC News (Australia)", "country": "Australia", "funding": "public", "qid": "Q4650197", "paywall": false,
+      "feeds": [ { "url": "https://www.abc.net.au/news/feed/51120/rss.xml", "section": "world" } ] },
+    { "id": "sbs", "name": "SBS News", "country": "Australia", "funding": "public", "qid": "Q1075994", "paywall": false,
+      "feeds": [ { "url": "https://www.sbs.com.au/news/topic/world/feed", "section": "world" } ] },
+    { "id": "rnz", "name": "RNZ", "country": "New Zealand", "funding": "public", "qid": "Q1626518", "paywall": false,
+      "feeds": [ { "url": "https://www.rnz.co.nz/rss/world.xml", "section": "world" } ] },
+    { "id": "aljazeera", "name": "Al Jazeera English", "country": "Qatar", "funding": "state", "qid": "Q4727585", "paywall": false,
+      "feeds": [ { "url": "https://www.aljazeera.com/xml/rss/all.xml", "section": "world" } ] },
+    { "id": "guardian", "name": "The Guardian", "country": "United Kingdom", "funding": "commercial", "qid": "Q11148", "paywall": false,
+      "feeds": [
+        { "url": "https://www.theguardian.com/world/rss", "section": "world" },
+        { "url": "https://www.theguardian.com/culture/rss", "section": "culture" }
+      ] },
+    { "id": "propublica", "name": "ProPublica", "country": "United States", "funding": "nonprofit", "qid": "Q1817856", "paywall": false,
+      "feeds": [ { "url": "https://www.propublica.org/feeds/propublica/main", "section": "investigations" } ] },
+    { "id": "conversation", "name": "The Conversation", "country": "Australia", "funding": "nonprofit", "qid": "Q7727516", "paywall": false,
+      "feeds": [ { "url": "https://theconversation.com/global/articles.atom", "section": "ideas" } ] },
+    { "id": "thehindu", "name": "The Hindu", "country": "India", "funding": "commercial", "qid": "Q926175", "paywall": false,
+      "feeds": [ { "url": "https://www.thehindu.com/news/international/feeder/default.rss", "section": "world" } ] },
+    { "id": "cna", "name": "CNA", "country": "Singapore", "funding": "state", "qid": null, "paywall": false,
+      "feeds": [ { "url": "https://www.channelnewsasia.com/rssfeeds/8395986", "section": "world" } ] },
+    { "id": "japantimes", "name": "The Japan Times", "country": "Japan", "funding": "commercial", "qid": "Q1190886", "paywall": false,
+      "feeds": [ { "url": "https://www.japantimes.co.jp/feed/", "section": "world" } ] },
+    { "id": "premiumtimes", "name": "Premium Times", "country": "Nigeria", "funding": "commercial", "qid": "Q16943304", "paywall": false,
+      "feeds": [ { "url": "https://www.premiumtimesng.com/feed", "section": "world" } ] },
+    { "id": "dawn", "name": "Dawn", "country": "Pakistan", "funding": "commercial", "qid": null, "paywall": false,
+      "feeds": [ { "url": "https://www.dawn.com/feeds/home", "section": "world" } ] },
+    { "id": "scmp", "name": "South China Morning Post", "country": "Hong Kong", "funding": "commercial", "qid": "Q1198574", "paywall": true,
+      "feeds": [ { "url": "https://www.scmp.com/rss/91/feed", "section": "world" } ] },
+    { "id": "sciencedaily", "name": "ScienceDaily", "country": "United States", "funding": "commercial", "qid": "Q679509", "paywall": false,
+      "feeds": [ { "url": "https://www.sciencedaily.com/rss/all.xml", "section": "science" } ] },
+    { "id": "ars", "name": "Ars Technica", "country": "United States", "funding": "commercial", "qid": "Q584152", "paywall": false,
+      "feeds": [ { "url": "https://feeds.arstechnica.com/arstechnica/index", "section": "technology" } ] }
+  ]
+}

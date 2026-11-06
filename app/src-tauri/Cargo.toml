@@ -1,0 +1,24 @@
+[package]
+name = "granthalaya"
+version = "0.1.0"
+description = "Retro reader: a daily newspaper with an evidence-first bias meter, and a book library with an e-ink style reader"
+license = "MIT"
+edition = "2024"
+
+[lib]
+name = "granthalaya_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+anyhow = "1"
+chrono = "0.4"
+futures = "0.3.34"
+granthalaya-core = { path = "../../core" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tokio = { version = "1", features = ["sync"] }

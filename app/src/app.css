@@ -1,0 +1,136 @@
+@import '@fontsource/unifrakturmaguntia/400.css';
+@import '@fontsource/playfair-display/400.css';
+@import '@fontsource/playfair-display/700.css';
+@import '@fontsource/playfair-display/900.css';
+@import '@fontsource/playfair-display/400-italic.css';
+@import '@fontsource/old-standard-tt/400.css';
+@import '@fontsource/old-standard-tt/700.css';
+@import '@fontsource/old-standard-tt/400-italic.css';
+@import '@fontsource/literata/400.css';
+@import '@fontsource/literata/400-italic.css';
+@import '@fontsource/literata/700.css';
+@import '@fontsource/special-elite/400.css';
+@import '@fontsource/im-fell-english/400.css';
+@import '@fontsource/im-fell-english/400-italic.css';
+
+:root {
+  --desk: #2b1f16;
+  --desk-2: #3a2a1d;
+  --desk-glow: #5b4330;
+  --paper: #efe5cf;
+  --paper-2: #e4d6b8;
+  --paper-edge: #cdb98f;
+  --ink: #2a221b;
+  --ink-soft: #5b4d3f;
+  --ink-faint: #8a7a66;
+  --rule: #b9a582;
+  --accent: #9c3d2e;
+  --accent-2: #2f5d50;
+  --gold: #c49a45;
+  --good: #3f6b3a;
+  --warn: #a8742a;
+  --bad: #9c3d2e;
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.25) inset, 0 18px 40px -12px rgb(0 0 0 / 0.55), 0 4px 10px rgb(0 0 0 / 0.3);
+  --font-mast: 'UnifrakturMaguntia', 'Old English Text MT', serif;
+  --font-head: 'Playfair Display', Georgia, serif;
+  --font-news: 'Old Standard TT', Georgia, serif;
+  --font-book: 'Literata', Georgia, serif;
+  --font-type: 'Special Elite', 'Courier New', monospace;
+  --font-fell: 'IM Fell English', Georgia, serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%, 0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1);
+  /* Paper grain: fractal noise as an inline SVG. */
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.25  0 0 0 0 0.18  0 0 0 0 0.1  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --desk: #17110c;
+    --desk-2: #21180f;
+    --desk-glow: #3a2a1c;
+    --paper: #d9ccb0;
+    --paper-2: #cbbb9a;
+    --paper-edge: #a8946c;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--font-news);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+}
+
+#app { min-height: 100%; }
+
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: inherit; }
+
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* View transitions between screens. */
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 420ms; animation-timing-function: var(--ease-out); }
+::view-transition-group(*) { animation-duration: 560ms; animation-timing-function: var(--ease-out); }
+html[data-nav='forward']::view-transition-old(root) { animation-name: vt-out; }
+html[data-nav='forward']::view-transition-new(root) { animation-name: vt-in; }
+html[data-nav='back']::view-transition-old(root) { animation-name: vt-in-rev; }
+html[data-nav='back']::view-transition-new(root) { animation-name: vt-out-rev; }
+@keyframes vt-out { to { opacity: 0; transform: scale(0.97); filter: blur(2px); } }
+@keyframes vt-in { from { opacity: 0; transform: scale(1.02); } }
+@keyframes vt-in-rev { to { opacity: 0; transform: scale(1.02); } }
+@keyframes vt-out-rev { from { opacity: 0; transform: scale(0.97); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+}
+
+/* Shared retro chrome. */
+.chip {
+  display: inline-flex; align-items: center; gap: 0.4em;
+  padding: 0.35em 0.8em; border-radius: 999px;
+  border: 1px solid var(--rule); background: transparent;
+  font-family: var(--font-type); font-size: 0.85rem; color: var(--ink-soft);
+  transition: background 160ms, color 160ms, transform 200ms var(--ease-spring);
+}
+.chip:hover { transform: translateY(-1px); }
+.chip[aria-pressed='true'] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.btn {
+  font-family: var(--font-type); letter-spacing: 0.02em;
+  padding: 0.55em 1.1em; border-radius: 6px;
+  border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 0.35);
+  transition: transform 160ms var(--ease-spring), box-shadow 160ms;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 0 rgb(0 0 0 / 0.3); }
+.btn:active { transform: translateY(1px); box-shadow: 0 0 0 rgb(0 0 0 / 0.3); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn:disabled { opacity: 0.5; cursor: default; transform: none; }
+
+.paper {
+  background-color: var(--paper);
+  background-image: var(--grain), radial-gradient(ellipse at 30% 0%, rgb(255 255 255 / 0.35), transparent 60%);
+  color: var(--ink);
+}
+
+.backbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: calc(env(safe-area-inset-top) + 0.6rem) 1rem 0.6rem;
+  background: linear-gradient(var(--desk), color-mix(in srgb, var(--desk) 85%, transparent));
+  color: var(--paper);
+  font-family: var(--font-type);
+  backdrop-filter: blur(6px);
+}
+.backbar button { background: none; border: 1px solid color-mix(in srgb, var(--paper) 40%, transparent); color: var(--paper); border-radius: 6px; padding: 0.35em 0.8em; }
+.backbar .spacer { flex: 1; }
