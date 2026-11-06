@@ -25,7 +25,11 @@ impl Settings {
     pub fn default_for(device: &str, daypart: &str) -> Self {
         let night = daypart == "night";
         Settings {
-            font_size: match device { "phone" => 18.0, "tablet" => 20.0, _ => 20.0 },
+            font_size: match device {
+                "phone" => 18.0,
+                "tablet" => 20.0,
+                _ => 20.0,
+            },
             line_height: 1.55,
             margin: if device == "phone" { 0.06 } else { 0.09 },
             warmth: if night { 0.65 } else { 0.25 },
@@ -129,7 +133,13 @@ impl State {
         s.clamp();
         let summary = describe(&before, &s);
         if let Some(q) = QUESTIONS.iter().find(|q| q.id == question) {
-            self.history.push(Change { at: at.into(), profile: p.clone(), question: q.prompt.into(), answer: q.answers[answer.min(2)].into(), summary });
+            self.history.push(Change {
+                at: at.into(),
+                profile: p.clone(),
+                question: q.prompt.into(),
+                answer: q.answers[answer.min(2)].into(),
+                summary,
+            });
             if self.history.len() > 200 {
                 self.history.remove(0);
             }

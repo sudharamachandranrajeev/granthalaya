@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import ePub from 'epubjs'
+  import { ACCEPT, readMeta } from './foliate'
   import { api, errText, type Book, type Shelved, type Taste } from '../lib/api'
   import { nav } from '../lib/nav.svelte'
   import { tilt, transition } from '../lib/motion'
@@ -17,6 +17,15 @@
   let error = $state<string | null>(null)
   let detail = $state<{ book: Book; shelved: Shelved | null } | null>(null)
   let loadingSuggest = $state(false)
+  let shelfFilter = $state('')
+
+  const fold = (t: string) => t.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
+  /** Books on the shelf whose title or author has every typed word. */
+  const shown = $derived.by(() => {
+    const words = fold(shelfFilter).split(/\s+/).filter(Boolean)
+    if (!words.length) return shelf
+    return shelf.filter((s) => { const hay = fold(`${s.book.title} ${s.book.authors.join(' ')}`); return words.every((w) => hay.includes(w)) })
+  })
 
   const CLOTH = ['#7a2e22', '#2f5d50', '#3b4a6b', '#6b4a2b', '#5a2f4d', '#2c4a3a', '#8a6a2a', '#4a2c22', '#24435a', '#5e5a2a']
   function hash(s: string) { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0 }
@@ -68,16 +77,15 @@
     busy = 'import'
     error = null
     try {
-      const buf = await file.arrayBuffer()
-      let title = file.name.replace(/\.epub$/i, ''), author = ''
-      try {
-        const meta = await ePub(buf.slice(0)).loaded.metadata
-        title = meta.title || title
-        author = meta.creator || ''
-      } catch { /* keep the file name */ }
-      await api.bookImport(new Uint8Array(buf), title, author)
+      const { title, author } = await readMeta(file)
+      await api.bookImport(new Uint8Array(await file.arrayBuffer()), file.name, title, author)
       await refresh()
     } catch (err) { error = errText(err) } finally { busy = null }
+  }
+
+  async function exportNotes() {
+    error = null
+    try { await api.highlightsExport(null) } catch (e) { error = errText(e) }
   }
 
   function read(id: string) { detail = null; nav.go({ name: 'reader', id }) }
@@ -99,9 +107,11 @@
     <button onclick={() => nav.back()}>← Desk</button>
     <span class="spacer"></span>
     <button onclick={() => (editingTaste = true)}>My taste</button>
+    <button onclick={() => nav.go({ name: 'catalogues' })}>Catalogues</button>
+    <button onclick={exportNotes} title="Save every highlight and note as Markdown">My notes</button>
     <label class="importbtn">
-      {busy === 'import' ? 'Importing…' : 'Add my own EPUB'}
-      <input type="file" accept=".epub,application/epub+zip" onchange={importFile} hidden />
+      {busy === 'import' ? 'Importing…' : 'Add my own book'}
+      <input type="file" accept={ACCEPT} onchange={importFile} hidden />
     </label>
   </nav>
 
@@ -113,16 +123,21 @@
   {#if error}<p class="error" role="alert">{error} <button onclick={() => (error = null)}>Dismiss</button></p>{/if}
 
   <section aria-label="Your shelf">
-    <h2 class="shelf-label">On your shelf</h2>
+    <div class="shelfhead">
+      <h2 class="shelf-label">On your shelf</h2>
+      {#if shelf.length > 1}
+        <input class="filter" bind:value={shelfFilter} placeholder="Find on your shelf" aria-label="Find a book on your shelf by title or author" />
+      {/if}
+    </div>
     <div class="shelf">
-      {#each shelf as s (s.book.id)}
+      {#each shown as s (s.book.id)}
         {@const sp = spine(s.book)}
         <button class="spine" style="--c:{sp.color}; height:{sp.height}%; width:{sp.width}px; {vt(s.book.id, 'spine')}" onclick={() => show(s.book)} title={s.book.title}>
           <span class="st">{s.book.title}</span>
           {#if s.progress > 0}<span class="mark" style="bottom:{Math.round(s.progress * 80) + 8}%"></span>{/if}
         </button>
       {:else}
-        <p class="empty">Pick a book below, search the catalogues, or add your own EPUB.</p>
+        <p class="empty">{shelf.length ? 'No book on your shelf matches that.' : 'Pick a book below, search the catalogues, or add your own book file.'}</p>
       {/each}
     </div>
   </section>
@@ -201,6 +216,8 @@
   .plaque h1 { font-family: var(--font-fell); font-weight: 400; margin: 0; font-size: clamp(1.8rem, 5vw, 2.6rem); letter-spacing: 0.06em; }
   .plaque p { margin: 0.2rem 0 0; font-family: var(--font-type); font-size: 0.8rem; opacity: 0.8; }
   section { max-width: 1200px; margin: 0 auto 2rem; padding: 0 1rem; }
+  .shelfhead { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; justify-content: space-between; }
+  .filter { padding: 0.35rem 0.6rem; font-family: var(--font-book); font-size: 0.9rem; border-radius: 6px; border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent); background: rgb(0 0 0 / 0.25); color: var(--paper); min-width: 0; width: min(100%, 260px); margin-bottom: 0.6rem; }
   .shelf-label { font-family: var(--font-fell); font-weight: 400; font-size: 1.3rem; margin: 0 0 0.6rem; color: color-mix(in srgb, var(--paper) 90%, transparent); }
   .dim { opacity: 0.65; font-family: var(--font-type); font-size: 0.8rem; }
   .shelf {

@@ -1,6 +1,6 @@
 [package]
 name = "granthalaya"
-version = "0.1.0"
+version = "0.2.0"
 description = "Retro reader: a daily newspaper with an evidence-first bias meter, and a book library with an e-ink style reader"
 license = "MIT"
 edition = "2024"
@@ -20,5 +20,21 @@ granthalaya-core = { path = "../../core" }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
 tauri-plugin-opener = "2"
 tokio = { version = "1", features = ["sync"] }
+url = "2"
+
+# Catalogue logins go in the system keyring on desktop (phones use app-private storage).
+[target.'cfg(any(target_os = "linux", windows, target_os = "macos"))'.dependencies]
+keyring-core = "1"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+zbus-secret-service-keyring-store = { version = "1", features = ["crypto-rust"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-native-keyring-store = "1"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+apple-native-keyring-store = { version = "1", features = ["keychain"] }

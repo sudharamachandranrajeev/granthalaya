@@ -1,7 +1,7 @@
 {
   "name": "granthalaya",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -27,7 +27,6 @@
     "@fontsource/special-elite": "^5.3.0",
     "@fontsource/unifrakturmaguntia": "^5.3.0",
     "@tauri-apps/api": "^2.12.4",
-    "@tauri-apps/plugin-opener": "^2.7.2",
-    "epubjs": "^0.3.93"
+    "@tauri-apps/plugin-opener": "^2.7.2"
   }
 }

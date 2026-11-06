@@ -14,15 +14,14 @@ who whom why will with would you your yours yourself yourselves said says say ne
 year years first last could may might us told get got make made like back still even way week day today yesterday \
 tomorrow people according report reports news";
 
-static STOP: LazyLock<std::collections::HashSet<&'static str>> =
-    LazyLock::new(|| STOPWORDS.split_whitespace().collect());
+static STOP: LazyLock<std::collections::HashSet<&'static str>> = LazyLock::new(|| STOPWORDS.split_whitespace().collect());
 
 static TAG: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"(?s)<[^>]*>").unwrap());
-static BLOCK: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"(?i)</?(p|div|br|li|h[1-6]|blockquote|section|article|tr)[^>]*>").unwrap());
+static BLOCK: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"(?i)</?(p|div|br|li|h[1-6]|blockquote|section|article|tr)[^>]*>").unwrap());
 static SPACE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"[ \t\u{a0}]+").unwrap());
-static SCRIPT: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"(?is)<(script|style|noscript|figure|figcaption)[^>]*>.*?</(script|style|noscript|figure|figcaption)>").unwrap());
+static SCRIPT: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"(?is)<(script|style|noscript|figure|figcaption)[^>]*>.*?</(script|style|noscript|figure|figcaption)>").unwrap()
+});
 
 /// Strip HTML to plain text: one string, whitespace collapsed.
 pub fn strip_html(html: &str) -> String {
@@ -36,11 +35,7 @@ pub fn paragraphs(html: &str) -> Vec<String> {
     let marked = BLOCK.replace_all(&no_script, "\n");
     let text = TAG.replace_all(&marked, "");
     let decoded = html_escape::decode_html_entities(&text);
-    decoded
-        .split('\n')
-        .map(|p| SPACE.replace_all(p.trim(), " ").to_string())
-        .filter(|p| p.chars().count() > 1)
-        .collect()
+    decoded.split('\n').map(|p| SPACE.replace_all(p.trim(), " ").to_string()).filter(|p| p.chars().count() > 1).collect()
 }
 
 /// Lower-case content words, stopwords removed.

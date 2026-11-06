@@ -94,27 +94,117 @@ pub struct Report {
 
 /// Emotive or judgement words that a straight news report usually avoids.
 const LOADED: &[&str] = &[
-    "slammed", "slams", "blasted", "blasts", "ripped", "rips", "destroyed", "destroys", "obliterated", "eviscerated",
-    "outrage", "outrageous", "outraged", "fury", "furious", "shocking", "shocked", "stunning", "stunned", "horrific",
-    "disgraceful", "disgrace", "shameful", "radical", "extremist", "extremists", "regime", "thugs", "thug",
-    "terrorists", "terror", "propaganda", "lies", "liar", "lied", "hoax", "scandal", "scandalous", "chaos", "chaotic",
-    "catastrophic", "catastrophe", "disaster", "disastrous", "crisis", "meltdown", "bombshell", "explosive",
-    "brutal", "savage", "evil", "heroic", "hero", "villain", "draconian", "tyranny", "tyrant", "dictator",
-    "massacre", "slaughter", "genocide", "invasion", "illegal", "illegals", "woke", "elite", "elites", "puppet",
-    "mob", "rogue", "sham", "witch-hunt", "crackdown", "backlash", "spree", "embattled", "beleaguered",
-    "controversial", "notorious", "infamous", "devastating", "alarming", "ominous", "unprecedented",
+    "slammed",
+    "slams",
+    "blasted",
+    "blasts",
+    "ripped",
+    "rips",
+    "destroyed",
+    "destroys",
+    "obliterated",
+    "eviscerated",
+    "outrage",
+    "outrageous",
+    "outraged",
+    "fury",
+    "furious",
+    "shocking",
+    "shocked",
+    "stunning",
+    "stunned",
+    "horrific",
+    "disgraceful",
+    "disgrace",
+    "shameful",
+    "radical",
+    "extremist",
+    "extremists",
+    "regime",
+    "thugs",
+    "thug",
+    "terrorists",
+    "terror",
+    "propaganda",
+    "lies",
+    "liar",
+    "lied",
+    "hoax",
+    "scandal",
+    "scandalous",
+    "chaos",
+    "chaotic",
+    "catastrophic",
+    "catastrophe",
+    "disaster",
+    "disastrous",
+    "crisis",
+    "meltdown",
+    "bombshell",
+    "explosive",
+    "brutal",
+    "savage",
+    "evil",
+    "heroic",
+    "hero",
+    "villain",
+    "draconian",
+    "tyranny",
+    "tyrant",
+    "dictator",
+    "massacre",
+    "slaughter",
+    "genocide",
+    "invasion",
+    "illegal",
+    "illegals",
+    "woke",
+    "elite",
+    "elites",
+    "puppet",
+    "mob",
+    "rogue",
+    "sham",
+    "witch-hunt",
+    "crackdown",
+    "backlash",
+    "spree",
+    "embattled",
+    "beleaguered",
+    "controversial",
+    "notorious",
+    "infamous",
+    "devastating",
+    "alarming",
+    "ominous",
+    "unprecedented",
 ];
 
 /// Phrases that make a claim without saying who made it.
 const UNATTRIBUTED: &[&str] = &[
-    "reportedly", "it is believed", "it is understood", "sources say", "sources said", "a source said",
-    "some say", "many say", "critics say", "experts say", "observers say", "it has been claimed", "allegedly",
-    "rumoured", "rumored", "is said to", "are said to", "people familiar", "unnamed",
+    "reportedly",
+    "it is believed",
+    "it is understood",
+    "sources say",
+    "sources said",
+    "a source said",
+    "some say",
+    "many say",
+    "critics say",
+    "experts say",
+    "observers say",
+    "it has been claimed",
+    "allegedly",
+    "rumoured",
+    "rumored",
+    "is said to",
+    "are said to",
+    "people familiar",
+    "unnamed",
 ];
 
-static ATTRIBUTION: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r"(?i)\b(said|says|told|according to|stated|announced|confirmed|wrote|testified|reported by)\b").unwrap()
-});
+static ATTRIBUTION: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"(?i)\b(said|says|told|according to|stated|announced|confirmed|wrote|testified|reported by)\b").unwrap());
 
 static QUOTE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r#"[“"]([^”"]{12,})[”"]"#).unwrap());
 
@@ -129,19 +219,132 @@ static TITLED: LazyLock<Regex> = LazyLock::new(|| {
 });
 
 const COUNTRIES: &[&str] = &[
-    "Afghanistan", "Albania", "Algeria", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bangladesh",
-    "Belarus", "Belgium", "Bolivia", "Bosnia", "Brazil", "Bulgaria", "Cambodia", "Cameroon", "Canada", "Chile", "China",
-    "Colombia", "Congo", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Ecuador", "Egypt", "Estonia",
-    "Ethiopia", "Finland", "France", "Georgia", "Germany", "Ghana", "Greece", "Guatemala", "Haiti", "Hong Kong",
-    "Hungary", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Japan", "Jordan", "Kazakhstan",
-    "Kenya", "Kuwait", "Latvia", "Lebanon", "Libya", "Lithuania", "Malaysia", "Mali", "Mexico", "Moldova", "Mongolia",
-    "Morocco", "Mozambique", "Myanmar", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria",
-    "North Korea", "Norway", "Pakistan", "Palestine", "Panama", "Peru", "Philippines", "Poland", "Portugal", "Qatar",
-    "Romania", "Russia", "Rwanda", "Saudi Arabia", "Senegal", "Serbia", "Singapore", "Slovakia", "Somalia",
-    "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Sweden", "Switzerland", "Syria",
-    "Taiwan", "Tanzania", "Thailand", "Tunisia", "Turkey", "Uganda", "Ukraine", "United Arab Emirates",
-    "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe",
-    "UK", "US", "Britain", "America", "Gaza", "Kremlin", "Beijing", "Washington", "Moscow", "Tehran",
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Argentina",
+    "Armenia",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Bangladesh",
+    "Belarus",
+    "Belgium",
+    "Bolivia",
+    "Bosnia",
+    "Brazil",
+    "Bulgaria",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Chile",
+    "China",
+    "Colombia",
+    "Congo",
+    "Croatia",
+    "Cuba",
+    "Cyprus",
+    "Czech Republic",
+    "Denmark",
+    "Ecuador",
+    "Egypt",
+    "Estonia",
+    "Ethiopia",
+    "Finland",
+    "France",
+    "Georgia",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Guatemala",
+    "Haiti",
+    "Hong Kong",
+    "Hungary",
+    "India",
+    "Indonesia",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Kuwait",
+    "Latvia",
+    "Lebanon",
+    "Libya",
+    "Lithuania",
+    "Malaysia",
+    "Mali",
+    "Mexico",
+    "Moldova",
+    "Mongolia",
+    "Morocco",
+    "Mozambique",
+    "Myanmar",
+    "Nepal",
+    "Netherlands",
+    "New Zealand",
+    "Nicaragua",
+    "Niger",
+    "Nigeria",
+    "North Korea",
+    "Norway",
+    "Pakistan",
+    "Palestine",
+    "Panama",
+    "Peru",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Romania",
+    "Russia",
+    "Rwanda",
+    "Saudi Arabia",
+    "Senegal",
+    "Serbia",
+    "Singapore",
+    "Slovakia",
+    "Somalia",
+    "South Africa",
+    "South Korea",
+    "South Sudan",
+    "Spain",
+    "Sri Lanka",
+    "Sudan",
+    "Sweden",
+    "Switzerland",
+    "Syria",
+    "Taiwan",
+    "Tanzania",
+    "Thailand",
+    "Tunisia",
+    "Turkey",
+    "Uganda",
+    "Ukraine",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States",
+    "Uruguay",
+    "Uzbekistan",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe",
+    "UK",
+    "US",
+    "Britain",
+    "America",
+    "Gaza",
+    "Kremlin",
+    "Beijing",
+    "Washington",
+    "Moscow",
+    "Tehran",
 ];
 
 /// Capital-city and building names used as shorthand for a government.
@@ -157,34 +360,174 @@ fn country_alias(name: &str) -> &str {
 }
 
 const GOV_WORDS: &[&str] = &[
-    "government", "ministry", "minister", "president", "prime minister", "officials", "state", "authorities",
-    "administration", "cabinet", "parliament", "embassy", "foreign office", "military", "army", "police",
+    "government",
+    "ministry",
+    "minister",
+    "president",
+    "prime minister",
+    "officials",
+    "state",
+    "authorities",
+    "administration",
+    "cabinet",
+    "parliament",
+    "embassy",
+    "foreign office",
+    "military",
+    "army",
+    "police",
 ];
 
 const PARTIES: &[&str] = &[
-    "Democratic Party", "Democrats", "Republican Party", "Republicans", "GOP", "Labour Party", "Labour",
-    "Conservative Party", "Conservatives", "Tories", "Liberal Democrats", "Reform UK", "SNP", "BJP",
-    "Bharatiya Janata Party", "Congress party", "Indian National Congress", "Communist Party", "CCP", "CDU", "SPD",
-    "AfD", "Greens", "Green Party", "National Rally", "Likud", "Hamas", "Hezbollah", "ANC", "PTI", "PML-N",
-    "Liberal Party", "Bloc Québécois", "New Democratic Party", "Fidesz", "Law and Justice", "Sinn Féin", "Fianna Fáil",
-    "Fine Gael", "United Russia", "Morena", "Workers' Party", "Peronists", "ruling party", "opposition party",
+    "Democratic Party",
+    "Democrats",
+    "Republican Party",
+    "Republicans",
+    "GOP",
+    "Labour Party",
+    "Labour",
+    "Conservative Party",
+    "Conservatives",
+    "Tories",
+    "Liberal Democrats",
+    "Reform UK",
+    "SNP",
+    "BJP",
+    "Bharatiya Janata Party",
+    "Congress party",
+    "Indian National Congress",
+    "Communist Party",
+    "CCP",
+    "CDU",
+    "SPD",
+    "AfD",
+    "Greens",
+    "Green Party",
+    "National Rally",
+    "Likud",
+    "Hamas",
+    "Hezbollah",
+    "ANC",
+    "PTI",
+    "PML-N",
+    "Liberal Party",
+    "Bloc Québécois",
+    "New Democratic Party",
+    "Fidesz",
+    "Law and Justice",
+    "Sinn Féin",
+    "Fianna Fáil",
+    "Fine Gael",
+    "United Russia",
+    "Morena",
+    "Workers' Party",
+    "Peronists",
+    "ruling party",
+    "opposition party",
 ];
 
 const ORGS: &[&str] = &[
-    "United Nations", "UN", "NATO", "European Union", "EU", "World Health Organization", "WHO", "IMF",
-    "International Monetary Fund", "World Bank", "OPEC", "African Union", "ASEAN", "G7", "G20", "BRICS", "Red Cross",
-    "Amnesty International", "Human Rights Watch", "Greenpeace", "UNICEF", "UNHCR", "ICC", "International Criminal Court",
-    "WTO", "Federal Reserve", "European Central Bank", "Bank of England", "Interpol", "FIFA", "IOC", "Oxfam",
-    "Doctors Without Borders", "MSF", "Pentagon", "FBI", "CIA",
+    "United Nations",
+    "UN",
+    "NATO",
+    "European Union",
+    "EU",
+    "World Health Organization",
+    "WHO",
+    "IMF",
+    "International Monetary Fund",
+    "World Bank",
+    "OPEC",
+    "African Union",
+    "ASEAN",
+    "G7",
+    "G20",
+    "BRICS",
+    "Red Cross",
+    "Amnesty International",
+    "Human Rights Watch",
+    "Greenpeace",
+    "UNICEF",
+    "UNHCR",
+    "ICC",
+    "International Criminal Court",
+    "WTO",
+    "Federal Reserve",
+    "European Central Bank",
+    "Bank of England",
+    "Interpol",
+    "FIFA",
+    "IOC",
+    "Oxfam",
+    "Doctors Without Borders",
+    "MSF",
+    "Pentagon",
+    "FBI",
+    "CIA",
 ];
 
 const COMPANIES: &[&str] = &[
-    "Apple", "Google", "Alphabet", "Microsoft", "Amazon", "Meta", "Facebook", "Instagram", "WhatsApp", "TikTok",
-    "ByteDance", "Tesla", "SpaceX", "X Corp", "OpenAI", "Anthropic", "Nvidia", "Intel", "AMD", "TSMC", "Samsung",
-    "Huawei", "Tencent", "Alibaba", "Sony", "Toyota", "Volkswagen", "BMW", "Boeing", "Airbus", "Shell", "BP",
-    "ExxonMobil", "Chevron", "Saudi Aramco", "Gazprom", "Rosneft", "Pfizer", "Moderna", "AstraZeneca", "Novartis",
-    "JPMorgan", "Goldman Sachs", "BlackRock", "HSBC", "Barclays", "Reliance", "Tata", "Adani", "Infosys", "Netflix",
-    "Disney", "Uber", "Walmart", "Nestlé", "Unilever", "Glencore", "Rio Tinto", "BHP", "Lockheed Martin", "Raytheon",
+    "Apple",
+    "Google",
+    "Alphabet",
+    "Microsoft",
+    "Amazon",
+    "Meta",
+    "Facebook",
+    "Instagram",
+    "WhatsApp",
+    "TikTok",
+    "ByteDance",
+    "Tesla",
+    "SpaceX",
+    "X Corp",
+    "OpenAI",
+    "Anthropic",
+    "Nvidia",
+    "Intel",
+    "AMD",
+    "TSMC",
+    "Samsung",
+    "Huawei",
+    "Tencent",
+    "Alibaba",
+    "Sony",
+    "Toyota",
+    "Volkswagen",
+    "BMW",
+    "Boeing",
+    "Airbus",
+    "Shell",
+    "BP",
+    "ExxonMobil",
+    "Chevron",
+    "Saudi Aramco",
+    "Gazprom",
+    "Rosneft",
+    "Pfizer",
+    "Moderna",
+    "AstraZeneca",
+    "Novartis",
+    "JPMorgan",
+    "Goldman Sachs",
+    "BlackRock",
+    "HSBC",
+    "Barclays",
+    "Reliance",
+    "Tata",
+    "Adani",
+    "Infosys",
+    "Netflix",
+    "Disney",
+    "Uber",
+    "Walmart",
+    "Nestlé",
+    "Unilever",
+    "Glencore",
+    "Rio Tinto",
+    "BHP",
+    "Lockheed Martin",
+    "Raytheon",
 ];
 
 static COMPANY_SUFFIX: LazyLock<Regex> = LazyLock::new(|| {
@@ -248,7 +591,10 @@ pub fn actors(text: &str) -> Vec<Actor> {
             let name = cap[1].trim().to_string();
             let first = name.split_whitespace().next().unwrap_or("");
             let is_place = COUNTRIES.iter().any(|c| name.contains(c));
-            if !known.contains(&name.to_lowercase()) && !is_place && !["The", "A", "An", "But", "And", "In", "On", "He", "She", "They", "It"].contains(&first) {
+            if !known.contains(&name.to_lowercase())
+                && !is_place
+                && !["The", "A", "An", "But", "And", "In", "On", "He", "She", "They", "It"].contains(&first)
+            {
                 people.push(name);
             }
         }
@@ -291,8 +637,29 @@ pub fn actors(text: &str) -> Vec<Actor> {
 }
 
 const TITLES: &[&str] = &[
-    "Prime Minister", "Chief Executive", "President", "Minister", "Chancellor", "Senator", "Governor", "Mayor", "Justice",
-    "Judge", "General", "Secretary", "Ambassador", "King", "Queen", "Pope", "Prince", "Princess", "Dr", "Mr", "Mrs", "Ms", "CEO",
+    "Prime Minister",
+    "Chief Executive",
+    "President",
+    "Minister",
+    "Chancellor",
+    "Senator",
+    "Governor",
+    "Mayor",
+    "Justice",
+    "Judge",
+    "General",
+    "Secretary",
+    "Ambassador",
+    "King",
+    "Queen",
+    "Pope",
+    "Prince",
+    "Princess",
+    "Dr",
+    "Mr",
+    "Mrs",
+    "Ms",
+    "CEO",
 ];
 
 /// The name after the last title word: "Later Judge Kavedza" gives "Kavedza".
@@ -344,7 +711,13 @@ pub fn assess(i: Input) -> Report {
     let keys: HashSet<String> = i.cluster.iter().map(|o| o.independence_key()).collect();
     let countries: HashSet<&str> = i.cluster.iter().map(|o| o.country.as_str()).collect();
     let independent = keys.len().max(1);
-    let corro_pts = match independent { 1 => 6, 2 => 15, 3 => 22, 4 => 26, _ => 30 };
+    let corro_pts = match independent {
+        1 => 6,
+        2 => 15,
+        3 => 22,
+        4 => 26,
+        _ => 30,
+    };
     let mut names: Vec<String> = i.cluster.iter().map(|o| o.name.clone()).collect();
     names.sort();
     names.dedup();
@@ -397,25 +770,38 @@ pub fn assess(i: Input) -> Report {
         for o in i.outlet.owners.iter().chain(i.outlet.funders.iter()) {
             let o_low = o.label.to_lowercase();
             if o_low.len() > 2 && (a_low.contains(&o_low) || o_low.contains(&a_low)) {
-                influences.push(Influence { who: a.name.clone(), how: format!("{} owns or funds {}, which published this story.", o.label, i.outlet.name) });
+                influences.push(Influence {
+                    who: a.name.clone(),
+                    how: format!("{} owns or funds {}, which published this story.", o.label, i.outlet.name),
+                });
             }
         }
         if a.name == own_gov && (i.outlet.funding == "state" || i.outlet.funding == "public") {
             let how = if i.outlet.funding == "state" {
                 format!("{} is funded by this government and is reporting on it.", i.outlet.name)
             } else {
-                format!("{} is publicly funded in {}; its charter sets editorial independence, but it is reporting on its own government.", i.outlet.name, i.outlet.country)
+                format!(
+                    "{} is publicly funded in {}; its charter sets editorial independence, but it is reporting on its own government.",
+                    i.outlet.name, i.outlet.country
+                )
             };
             influences.push(Influence { who: a.name.clone(), how });
         }
     }
     let quoted: Vec<&Actor> = actors.iter().filter(|a| a.quotes > 0).collect();
     if quoted.len() == 1 && quoted[0].quotes >= 2 {
-        influences.push(Influence { who: quoted[0].name.clone(), how: "The only voice quoted in the story, so it frames the account.".into() });
+        influences
+            .push(Influence { who: quoted[0].name.clone(), how: "The only voice quoted in the story, so it frames the account.".into() });
     }
     let state_conflict = influences.iter().any(|x| x.how.contains("is funded by this government"));
     let owner_conflict = influences.iter().any(|x| x.how.contains("owns or funds"));
-    let indep_pts = if owner_conflict || state_conflict { 5 } else if !influences.is_empty() { 10 } else { 15 };
+    let indep_pts = if owner_conflict || state_conflict {
+        5
+    } else if !influences.is_empty() {
+        10
+    } else {
+        15
+    };
     let indep_detail = if influences.is_empty() {
         "No one in the story owns or funds the outlet.".to_string()
     } else {
@@ -473,7 +859,9 @@ mod tests {
 
     #[test]
     fn finds_people_parties_governments_and_quotes() {
-        let a = actors("Prime Minister Jane Okafor said “we will not back down on this plan” as the Labour Party met. Nigeria government officials agreed.");
+        let a = actors(
+            "Prime Minister Jane Okafor said “we will not back down on this plan” as the Labour Party met. Nigeria government officials agreed.",
+        );
         let names: Vec<_> = a.iter().map(|x| (x.name.as_str(), x.kind.as_str())).collect();
         assert!(names.contains(&("Jane Okafor", "person")), "{names:?}");
         assert!(names.contains(&("Labour Party", "party")));
@@ -500,7 +888,12 @@ mod tests {
             url: "https://x.org/news/1",
             full_text: false,
             outlet: o.clone(),
-            cluster: vec![o, facts("b", "UK", "public", Some("BBC")), facts("c", "Germany", "state", None), facts("d", "Japan", "commercial", Some("Nikkei"))],
+            cluster: vec![
+                o,
+                facts("b", "UK", "public", Some("BBC")),
+                facts("c", "Germany", "state", None),
+                facts("d", "Japan", "commercial", Some("Nikkei")),
+            ],
         });
         assert!(r.score >= 80, "{r:?}");
         assert!(r.loaded.is_empty());
@@ -534,7 +927,14 @@ mod tests {
     #[test]
     fn opinion_is_capped_and_labelled() {
         let o = facts("g", "UK", "commercial", Some("Scott Trust"));
-        let r = assess(Input { title: "Why rates must fall", text: "", url: "https://g.com/commentisfree/x", full_text: false, outlet: o.clone(), cluster: vec![o; 1] });
+        let r = assess(Input {
+            title: "Why rates must fall",
+            text: "",
+            url: "https://g.com/commentisfree/x",
+            full_text: false,
+            outlet: o.clone(),
+            cluster: vec![o; 1],
+        });
         assert!(r.opinion && r.score <= 60 && r.verdict.contains("opinion"));
     }
 }

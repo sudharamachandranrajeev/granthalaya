@@ -66,7 +66,13 @@ async fn entities(client: &reqwest::Client, ids: &[String], props: &str) -> Resu
         let body: Value = client
             .get(API)
             .header(reqwest::header::USER_AGENT, crate::feeds::CONTACT_USER_AGENT)
-            .query(&[("action", "wbgetentities"), ("format", "json"), ("props", props), ("languages", "en|mul|de|fr|es"), ("ids", &chunk.join("|"))])
+            .query(&[
+                ("action", "wbgetentities"),
+                ("format", "json"),
+                ("props", props),
+                ("languages", "en|mul|de|fr|es"),
+                ("ids", &chunk.join("|")),
+            ])
             .send()
             .await?
             .error_for_status()?

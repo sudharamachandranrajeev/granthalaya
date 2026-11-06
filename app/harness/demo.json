@@ -1,0 +1,1394 @@
+{
+  "book": {
+    "fb2": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<FictionBook xmlns=\"http://www.gribuser.ru/xml/fictionbook/2.0\"><description><title-info><genre>prose</genre><author><first-name>Tamsin</first-name><last-name>Vale</last-name></author><book-title>The Lighthouse Almanac</book-title><lang>en</lang></title-info></description><body><title><p>The Lighthouse Almanac</p></title><section><title><p>I. The Keeper</p></title><p>The lighthouse stood at the end of a long spit of shingle, and on clear evenings its shadow reached almost to the village. Mara had kept it for eleven years, and in that time she had learned that the sea never repeated itself.</p><p>Each morning she wrote three lines in the almanac: the wind, the colour of the water, and one thing she had not expected. The third line was the hardest. Some days she sat with the pen above the page until her tea went cold.</p><p>Patience, her uncle had told her when he handed over the keys, is not waiting. It is paying attention while you wait. She had thought it a pretty saying then. Now she knew it was simply a description of the work.</p><p>The lamp was lit at dusk and put out at dawn. Between those hours the lighthouse belonged to the ships, and the ships did not know her name. That suited her. A good light, she thought, should be noticed only when it is missing.</p></section><section><title><p>II. The Storm Book</p></title><p>In the third winter a storm came that the almanac had no words for. The barometer fell so fast that Mara tapped the glass, thinking it stuck. Outside, the gulls had gone quiet and the water had turned the grey of old pewter.</p><p>She trimmed the wick, filled the reservoir and climbed the hundred and twelve steps twice more than she needed to, because climbing was something to do with her hands. At midnight the first wave broke over the gallery rail.</p><p>By morning the shingle had moved. The path to the village was gone, and a new beach lay where the boathouse had been. She opened the almanac and wrote, under the third line, a single word: everything.</p></section><section><title><p>III. Small Repairs</p></title><p>Spring came slowly. The village sent a cart along the new beach with timber and nails, and two boys who wanted to see the lamp. Mara let them polish the brass, which they did with more enthusiasm than care.</p><p>Repairs, she found, were mostly small. A hinge here, a pane of glass there, a stair tread that had worked loose. None of it was dramatic, and all of it mattered. The light did not care how the tower looked; it cared whether the tower stood.</p><p>On the first warm evening she carried a chair onto the gallery and watched the fishing boats come home, one after another, each one turning a little as it found her beam. She did not write anything in the almanac that night. Some days, she decided, the third line could be left blank.</p></section></body></FictionBook>",
+    "id": "local:demo-almanac"
+  },
+  "catalogue": {
+    "books": [
+      {
+        "authors": [
+          "Jane Austen"
+        ],
+        "cover": null,
+        "downloads": [
+          {
+            "format": "epub",
+            "url": "https://library.example/get/persuasion.epub"
+          },
+          {
+            "format": "pdf",
+            "url": "https://library.example/get/persuasion.pdf"
+          }
+        ],
+        "id": "opds:persuasion",
+        "summary": "",
+        "title": "Persuasion"
+      },
+      {
+        "authors": [
+          "H. G. Wells"
+        ],
+        "cover": null,
+        "downloads": [
+          {
+            "format": "epub",
+            "url": "https://library.example/get/war-worlds.epub"
+          },
+          {
+            "format": "pdf",
+            "url": "https://library.example/get/war-worlds.pdf"
+          }
+        ],
+        "id": "opds:war-worlds",
+        "summary": "",
+        "title": "The War of the Worlds"
+      },
+      {
+        "authors": [
+          "George Eliot"
+        ],
+        "cover": null,
+        "downloads": [
+          {
+            "format": "epub",
+            "url": "https://library.example/get/silas.epub"
+          },
+          {
+            "format": "pdf",
+            "url": "https://library.example/get/silas.pdf"
+          }
+        ],
+        "id": "opds:silas",
+        "summary": "",
+        "title": "Silas Marner"
+      },
+      {
+        "authors": [
+          "Wilkie Collins"
+        ],
+        "cover": null,
+        "downloads": [
+          {
+            "format": "epub",
+            "url": "https://library.example/get/moonstone.epub"
+          },
+          {
+            "format": "pdf",
+            "url": "https://library.example/get/moonstone.pdf"
+          }
+        ],
+        "id": "opds:moonstone",
+        "summary": "",
+        "title": "The Moonstone"
+      }
+    ],
+    "groups": [],
+    "links": [
+      {
+        "cover": null,
+        "summary": "Recently added books",
+        "title": "New this month",
+        "url": "https://library.example/opds/new"
+      },
+      {
+        "cover": null,
+        "summary": "",
+        "title": "Most read",
+        "url": "https://library.example/opds/popular"
+      },
+      {
+        "cover": null,
+        "summary": "",
+        "title": "By subject",
+        "url": "https://library.example/opds/subjects"
+      }
+    ],
+    "next": "https://library.example/opds?page=2",
+    "prev": null,
+    "search": "https://library.example/opds/search?q={searchTerms}",
+    "title": "Commons Library",
+    "url": "https://library.example/opds"
+  },
+  "catalogues": [
+    {
+      "id": "cdemo",
+      "title": "Commons Library",
+      "url": "https://library.example/opds",
+      "user": ""
+    }
+  ],
+  "comfort": {
+    "history": [],
+    "question": null,
+    "settings": {
+      "contrast": 0.7,
+      "font": "Literata",
+      "font_size": 20.0,
+      "lightness": 0.85,
+      "line_height": 1.55,
+      "margin": 0.09,
+      "warmth": 0.25
+    }
+  },
+  "dates": [
+    "2026-11-05",
+    "2026-11-04",
+    "2026-11-03"
+  ],
+  "edition": {
+    "built_at": "2026-11-05T07:30:00Z",
+    "date": "2026-11-05",
+    "number": 3,
+    "pages": [
+      {
+        "stories": [
+          {
+            "interest": 0.5,
+            "others": [
+              {
+                "outlet_name": "Harbourline",
+                "story_id": "e036992b24ca6112",
+                "title": "Storm surge: new flood barrier closed for first time",
+                "url": "https://harbour.example/world/1"
+              },
+              {
+                "outlet_name": "Saltmarsh Herald",
+                "story_id": "1e9801bf1a70ee2b",
+                "title": "Flood barrier gates lowered as storm surge approaches coast",
+                "url": "https://saltmarsh.example/world/2"
+              },
+              {
+                "outlet_name": "The Lantern Gazette",
+                "story_id": "99cdb05fb91336e3",
+                "title": "Officials slammed over flood barrier delays as storm surge hits",
+                "url": "https://lantern.example/world/3"
+              }
+            ],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "4 independent outlets in 4 countries carry this story: Harbourline, Meridian Courier, Saltmarsh Herald, The Lantern Gazette.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 26
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "1 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 12
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Funding model known; no public ownership record found.",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 3
+                }
+              ],
+              "corroboration": {
+                "countries": 4,
+                "independent": 4,
+                "outlets": [
+                  "Harbourline",
+                  "Meridian Courier",
+                  "Saltmarsh Herald",
+                  "The Lantern Gazette"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": false,
+              "outlet": {
+                "country": "Canada",
+                "funders": [],
+                "funding": "public",
+                "funding_text": "Public broadcaster: paid for by a licence fee or public grant, with editorial independence set by law or charter.",
+                "id": "meridian",
+                "name": "Meridian Courier",
+                "owners": [],
+                "wikidata": null
+              },
+              "score": 81,
+              "unattributed": [],
+              "verdict": "Well sourced"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "1021d5fecafacd35",
+              "image": null,
+              "outlet_id": "meridian",
+              "outlet_name": "Meridian Courier",
+              "paywall": false,
+              "published": "2026-11-05T07:30:00Z",
+              "section": "world",
+              "summary": "The barrier's twelve steel gates were lowered overnight, city engineers said, the first full closure since the system was finished last spring.",
+              "title": "Coastal city closes new flood barrier as storm surge nears",
+              "topics": [
+                "climate"
+              ],
+              "url": "https://meridian.example/world/0"
+            },
+            "why": [
+              "Covered by 4 independent outlets today"
+            ]
+          },
+          {
+            "interest": 0.5,
+            "others": [
+              {
+                "outlet_name": "Copperfield Daily",
+                "story_id": "90297fa03f6db957",
+                "title": "Rail freight operator orders forty battery locomotives",
+                "url": "https://copper.example/business/6"
+              },
+              {
+                "outlet_name": "Meridian Courier",
+                "story_id": "f9ff09878c03f99a",
+                "title": "Freight operator to switch short routes to battery locomotives",
+                "url": "https://meridian.example/business/7"
+              }
+            ],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "3 independent outlets in 3 countries carry this story: Copperfield Daily, Meridian Courier, The Quill Report.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 22
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "1 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 12
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Owner or funder is on public record (Wikidata).",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 10
+                }
+              ],
+              "corroboration": {
+                "countries": 3,
+                "independent": 3,
+                "outlets": [
+                  "Copperfield Daily",
+                  "Meridian Courier",
+                  "The Quill Report"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": false,
+              "outlet": {
+                "country": "India",
+                "funders": [],
+                "funding": "commercial",
+                "funding_text": "Commercial: paid for by advertising, subscriptions or an owner company.",
+                "id": "quill",
+                "name": "The Quill Report",
+                "owners": [
+                  {
+                    "label": "Lantern Media Group",
+                    "url": null
+                  }
+                ],
+                "wikidata": null
+              },
+              "score": 84,
+              "unattributed": [],
+              "verdict": "Well sourced"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "a25bdcd9fd6e56f5",
+              "image": null,
+              "outlet_id": "quill",
+              "outlet_name": "The Quill Report",
+              "paywall": false,
+              "published": "2026-11-05T04:50:00Z",
+              "section": "business",
+              "summary": "Analysts said the order of forty locomotives could lower freight costs on short routes.",
+              "title": "Battery locomotive order signals shift for rail freight",
+              "topics": [],
+              "url": "https://quill.example/business/8"
+            },
+            "why": [
+              "Covered by 3 independent outlets today"
+            ]
+          },
+          {
+            "interest": 0.7,
+            "others": [],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "Only this outlet (or outlets with the same owner) is carrying this story right now.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 6
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "1 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 12
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Funding model known; no public ownership record found.",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 3
+                }
+              ],
+              "corroboration": {
+                "countries": 1,
+                "independent": 1,
+                "outlets": [
+                  "Northwind Times"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": false,
+              "outlet": {
+                "country": "United States",
+                "funders": [],
+                "funding": "nonprofit",
+                "funding_text": "Nonprofit: paid for by donors, foundations and members.",
+                "id": "northwind",
+                "name": "Northwind Times",
+                "owners": [],
+                "wikidata": null
+              },
+              "score": 61,
+              "unattributed": [],
+              "verdict": "Mostly solid"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "86570d77abd35a61",
+              "image": null,
+              "outlet_id": "northwind",
+              "outlet_name": "Northwind Times",
+              "paywall": false,
+              "published": "2026-11-05T06:10:00Z",
+              "section": "science",
+              "summary": "Three amateur astronomers spotted the faint comet in images taken last week, the regional observatory said in a statement.",
+              "title": "Small telescope team finds comet heading toward inner solar system",
+              "topics": [
+                "science"
+              ],
+              "url": "https://northwind.example/science/4"
+            },
+            "why": [
+              "You follow this topic"
+            ]
+          },
+          {
+            "interest": 0.7,
+            "others": [],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "Only this outlet (or outlets with the same owner) is carrying this story right now.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 6
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "3 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 20
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Funding model known; no public ownership record found.",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 3
+                }
+              ],
+              "corroboration": {
+                "countries": 1,
+                "independent": 1,
+                "outlets": [
+                  "Tidewater Radio"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": false,
+              "outlet": {
+                "country": "Germany",
+                "funders": [],
+                "funding": "state",
+                "funding_text": "State-funded: owned or paid for by a national government.",
+                "id": "tidewater",
+                "name": "Tidewater Radio",
+                "owners": [],
+                "wikidata": null
+              },
+              "score": 69,
+              "unattributed": [],
+              "verdict": "Mostly solid"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "ba90198fbf8a0544",
+              "image": null,
+              "outlet_id": "tidewater",
+              "outlet_name": "Tidewater Radio",
+              "paywall": false,
+              "published": "2026-11-05T05:50:00Z",
+              "section": "science",
+              "summary": "The observatory said follow-up images confirmed the object, which should be visible with binoculars in March.",
+              "title": "Amateur astronomers' comet confirmed by observatory",
+              "topics": [
+                "science"
+              ],
+              "url": "https://tidewater.example/science/5"
+            },
+            "why": [
+              "You follow this topic"
+            ]
+          },
+          {
+            "interest": 0.5,
+            "others": [],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "Only this outlet (or outlets with the same owner) is carrying this story right now.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 6
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "1 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 12
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Funding model known; no public ownership record found.",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 3
+                }
+              ],
+              "corroboration": {
+                "countries": 1,
+                "independent": 1,
+                "outlets": [
+                  "Harbourline"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": false,
+              "outlet": {
+                "country": "Singapore",
+                "funders": [],
+                "funding": "commercial",
+                "funding_text": "Commercial: paid for by advertising, subscriptions or an owner company.",
+                "id": "harbour",
+                "name": "Harbourline",
+                "owners": [],
+                "wikidata": null
+              },
+              "score": 61,
+              "unattributed": [],
+              "verdict": "Mostly solid"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "1e4bc2830865f9a0",
+              "image": null,
+              "outlet_id": "harbour",
+              "outlet_name": "Harbourline",
+              "paywall": false,
+              "published": "2026-11-05T04:30:00Z",
+              "section": "health",
+              "summary": "Twenty community clinics will stay open until nine in the evening from next month, the health board said.",
+              "title": "Clinics extend evening hours to shorten waiting lists",
+              "topics": [],
+              "url": "https://harbour.example/health/9"
+            },
+            "why": []
+          },
+          {
+            "interest": 0.5,
+            "others": [],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "Only this outlet (or outlets with the same owner) is carrying this story right now.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 6
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "1 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 12
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Funding model known; no public ownership record found.",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 3
+                }
+              ],
+              "corroboration": {
+                "countries": 1,
+                "independent": 1,
+                "outlets": [
+                  "Northwind Times"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": false,
+              "outlet": {
+                "country": "United States",
+                "funders": [],
+                "funding": "nonprofit",
+                "funding_text": "Nonprofit: paid for by donors, foundations and members.",
+                "id": "northwind",
+                "name": "Northwind Times",
+                "owners": [],
+                "wikidata": null
+              },
+              "score": 61,
+              "unattributed": [],
+              "verdict": "Mostly solid"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "cf79aa543694c392",
+              "image": null,
+              "outlet_id": "northwind",
+              "outlet_name": "Northwind Times",
+              "paywall": false,
+              "published": "2026-11-05T03:50:00Z",
+              "section": "investigations",
+              "summary": "Testing logs obtained by Northwind Times show that forty schools missed required checks, according to the documents.",
+              "title": "Records show water testing at schools lapsed for two years",
+              "topics": [
+                "education"
+              ],
+              "url": "https://northwind.example/investigations/11"
+            },
+            "why": []
+          },
+          {
+            "interest": 0.5,
+            "others": [],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "Only this outlet (or outlets with the same owner) is carrying this story right now.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 6
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "1 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 12
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Funding model known; no public ownership record found.",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 3
+                }
+              ],
+              "corroboration": {
+                "countries": 1,
+                "independent": 1,
+                "outlets": [
+                  "Copperfield Daily"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": false,
+              "outlet": {
+                "country": "Australia",
+                "funders": [],
+                "funding": "commercial",
+                "funding_text": "Commercial: paid for by advertising, subscriptions or an owner company.",
+                "id": "copper",
+                "name": "Copperfield Daily",
+                "owners": [],
+                "wikidata": null
+              },
+              "score": 61,
+              "unattributed": [],
+              "verdict": "Mostly solid"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "8c6843bb6ba55cd4",
+              "image": null,
+              "outlet_id": "copper",
+              "outlet_name": "Copperfield Daily",
+              "paywall": false,
+              "published": "2026-11-05T03:30:00Z",
+              "section": "sport",
+              "summary": "The second-tier side won five to four on penalties, the league confirmed, setting up a final against the champions.",
+              "title": "Underdog club reaches cup final after penalty shootout",
+              "topics": [
+                "sport"
+              ],
+              "url": "https://copper.example/sport/12"
+            },
+            "why": []
+          }
+        ],
+        "title": "Front Page"
+      },
+      {
+        "stories": [
+          {
+            "interest": 0.5,
+            "others": [],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "Only this outlet (or outlets with the same owner) is carrying this story right now.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 6
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "1 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 12
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Funding model known; no public ownership record found.",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 3
+                }
+              ],
+              "corroboration": {
+                "countries": 1,
+                "independent": 1,
+                "outlets": [
+                  "Tidewater Radio"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": false,
+              "outlet": {
+                "country": "Germany",
+                "funders": [],
+                "funding": "state",
+                "funding_text": "State-funded: owned or paid for by a national government.",
+                "id": "tidewater",
+                "name": "Tidewater Radio",
+                "owners": [],
+                "wikidata": null
+              },
+              "score": 61,
+              "unattributed": [],
+              "verdict": "Mostly solid"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "a71b437b94e0e691",
+              "image": null,
+              "outlet_id": "tidewater",
+              "outlet_name": "Tidewater Radio",
+              "paywall": false,
+              "published": "2026-11-05T03:10:00Z",
+              "section": "technology",
+              "summary": "The volunteer project said the routes cover forty countries and work without a data connection.",
+              "title": "Open-source map project adds offline walking routes",
+              "topics": [],
+              "url": "https://tidewater.example/technology/13"
+            },
+            "why": []
+          }
+        ],
+        "title": "Science & Technology"
+      },
+      {
+        "stories": [
+          {
+            "interest": 0.5,
+            "others": [],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "Only this outlet (or outlets with the same owner) is carrying this story right now.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 6
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "0 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 8
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Owner or funder is on public record (Wikidata).",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 10
+                }
+              ],
+              "corroboration": {
+                "countries": 1,
+                "independent": 1,
+                "outlets": [
+                  "The Lantern Gazette"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": true,
+              "outlet": {
+                "country": "United Kingdom",
+                "funders": [],
+                "funding": "commercial",
+                "funding_text": "Commercial: paid for by advertising, subscriptions or an owner company.",
+                "id": "lantern",
+                "name": "The Lantern Gazette",
+                "owners": [
+                  {
+                    "label": "Lantern Media Group",
+                    "url": null
+                  }
+                ],
+                "wikidata": null
+              },
+              "score": 60,
+              "unattributed": [],
+              "verdict": "Mostly solid · opinion or analysis"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "d8deb6e0634f5a37",
+              "image": null,
+              "outlet_id": "lantern",
+              "outlet_name": "The Lantern Gazette",
+              "paywall": false,
+              "published": "2026-11-05T02:50:00Z",
+              "section": "ideas",
+              "summary": "In this column, a planner argues that narrower streets would make town centres safer and busier.",
+              "title": "Opinion: our towns need slower streets, not wider roads",
+              "topics": [],
+              "url": "https://lantern.example/ideas/14"
+            },
+            "why": []
+          }
+        ],
+        "title": "Ideas & Analysis"
+      },
+      {
+        "stories": [
+          {
+            "interest": 0.5,
+            "others": [],
+            "report": {
+              "actors": [],
+              "basis": "Headline and summary",
+              "components": [
+                {
+                  "detail": "Only this outlet (or outlets with the same owner) is carrying this story right now.",
+                  "id": "corroboration",
+                  "label": "Corroboration",
+                  "max": 30,
+                  "points": 6
+                },
+                {
+                  "detail": "No emotive or judgement words found.",
+                  "id": "wording",
+                  "label": "Neutral wording",
+                  "max": 25,
+                  "points": 25
+                },
+                {
+                  "detail": "1 attributed statement(s) (headline and summary only; open the story for the full check).",
+                  "id": "attribution",
+                  "label": "Attributed claims",
+                  "max": 20,
+                  "points": 12
+                },
+                {
+                  "detail": "No one in the story owns or funds the outlet.",
+                  "id": "independence",
+                  "label": "Independence",
+                  "max": 15,
+                  "points": 15
+                },
+                {
+                  "detail": "Funding model known; no public ownership record found.",
+                  "id": "transparency",
+                  "label": "Ownership on record",
+                  "max": 10,
+                  "points": 3
+                }
+              ],
+              "corroboration": {
+                "countries": 1,
+                "independent": 1,
+                "outlets": [
+                  "Saltmarsh Herald"
+                ]
+              },
+              "influences": [],
+              "loaded": [],
+              "opinion": false,
+              "outlet": {
+                "country": "Ireland",
+                "funders": [],
+                "funding": "commercial",
+                "funding_text": "Commercial: paid for by advertising, subscriptions or an owner company.",
+                "id": "saltmarsh",
+                "name": "Saltmarsh Herald",
+                "owners": [],
+                "wikidata": null
+              },
+              "score": 61,
+              "unattributed": [],
+              "verdict": "Mostly solid"
+            },
+            "sensitive": false,
+            "story": {
+              "id": "dac526c0702ce37c",
+              "image": null,
+              "outlet_id": "saltmarsh",
+              "outlet_name": "Saltmarsh Herald",
+              "paywall": false,
+              "published": "2026-11-05T04:10:00Z",
+              "section": "culture",
+              "summary": "Volunteers spent eight months restoring the building, the parish council said, and lending begins on Saturday.",
+              "title": "Village library reopens after volunteers rebuild its reading room",
+              "topics": [],
+              "url": "https://saltmarsh.example/culture/10"
+            },
+            "why": []
+          }
+        ],
+        "title": "Culture"
+      }
+    ],
+    "sources_failed": [],
+    "sources_ok": [
+      "The Lantern Gazette",
+      "Meridian Courier",
+      "Harbourline",
+      "Northwind Times",
+      "The Quill Report",
+      "Copperfield Daily",
+      "Saltmarsh Herald",
+      "Tidewater Radio"
+    ],
+    "stories_read": 15
+  },
+  "editions": [
+    {
+      "date": "2026-11-05",
+      "lead": "Coastal city closes new flood barrier as storm surge nears",
+      "number": 3,
+      "stories": 10
+    },
+    {
+      "date": "2026-11-04",
+      "lead": "Water authority warns of high tides along the coast this week",
+      "number": 2,
+      "stories": 3
+    },
+    {
+      "date": "2026-11-03",
+      "lead": "Flood barrier passes final inspection before storm season",
+      "number": 1,
+      "stories": 2
+    }
+  ],
+  "hits": [
+    {
+      "date": "2026-11-03",
+      "outlet": "Saltmarsh Herald",
+      "snippet": "\u0002Flood\u0003 \u0002barrier\u0003 passes final inspection before storm season",
+      "story_id": "6d3c90b9ede7a3d2",
+      "title": "Flood barrier passes final inspection before storm season"
+    },
+    {
+      "date": "2026-11-04",
+      "outlet": "Meridian Courier",
+      "snippet": "The authority said the new \u0002flood\u0003 \u0002barrier\u0003 could close for the first time if…",
+      "story_id": "6448a3f2e82827f5",
+      "title": "Water authority warns of high tides along the coast this week"
+    },
+    {
+      "date": "2026-11-05",
+      "outlet": "Meridian Courier",
+      "snippet": "The coastal city's new \u0002flood\u0003 \u0002barrier\u0003 was closed in full for the first…",
+      "story_id": "1021d5fecafacd35",
+      "title": "Coastal city closes new flood barrier as storm surge nears"
+    }
+  ],
+  "library": [
+    {
+      "book": {
+        "authors": [
+          "Tamsin Vale"
+        ],
+        "cover": null,
+        "epub_url": null,
+        "id": "local:demo-almanac",
+        "popularity": 0,
+        "source": "Imported",
+        "subjects": [
+          "Fiction",
+          "Sea stories"
+        ],
+        "summary": "A lighthouse keeper's year, one almanac line at a time.",
+        "title": "The Lighthouse Almanac"
+      },
+      "format": "fb2",
+      "last_read": "2026-11-05T07:10:00Z",
+      "location": null,
+      "progress": 0.18,
+      "rating": null
+    },
+    {
+      "book": {
+        "authors": [
+          "Jane Austen"
+        ],
+        "cover": null,
+        "epub_url": null,
+        "id": "demo:pride",
+        "popularity": 0,
+        "source": "Imported",
+        "subjects": [
+          "Fiction",
+          "Courtship"
+        ],
+        "summary": "",
+        "title": "Pride and Prejudice"
+      },
+      "format": "epub",
+      "last_read": "2026-11-03T21:00:00Z",
+      "location": null,
+      "progress": 0.62,
+      "rating": 9
+    },
+    {
+      "book": {
+        "authors": [
+          "H. G. Wells"
+        ],
+        "cover": null,
+        "epub_url": null,
+        "id": "demo:time-machine",
+        "popularity": 0,
+        "source": "Imported",
+        "subjects": [
+          "Science fiction"
+        ],
+        "summary": "",
+        "title": "The Time Machine"
+      },
+      "format": "epub",
+      "last_read": "2026-10-28T20:00:00Z",
+      "location": null,
+      "progress": 1.0,
+      "rating": 8
+    },
+    {
+      "book": {
+        "authors": [
+          "George Eliot"
+        ],
+        "cover": null,
+        "epub_url": null,
+        "id": "demo:middlemarch",
+        "popularity": 0,
+        "source": "Imported",
+        "subjects": [
+          "Fiction"
+        ],
+        "summary": "",
+        "title": "Middlemarch"
+      },
+      "format": "epub",
+      "last_read": null,
+      "location": null,
+      "progress": 0.0,
+      "rating": null
+    },
+    {
+      "book": {
+        "authors": [
+          "R. Penhallow"
+        ],
+        "cover": null,
+        "epub_url": null,
+        "id": "demo:herbal",
+        "popularity": 0,
+        "source": "Imported",
+        "subjects": [
+          "Botany"
+        ],
+        "summary": "",
+        "title": "A Field Guide to Coastal Plants"
+      },
+      "format": "pdf",
+      "last_read": "2026-10-30T12:00:00Z",
+      "location": null,
+      "progress": 0.33,
+      "rating": null
+    }
+  ],
+  "opened": {
+    "id": "1021d5fecafacd35",
+    "note": null,
+    "paragraphs": [
+      "The coastal city's new flood barrier was closed in full for the first time on Wednesday night, as a storm pushed water two metres above the normal tide.",
+      "All twelve steel gates were lowered between nine and eleven in the evening, according to the regional water authority. Engineers said the closure went to plan.",
+      "\"The gates held, and the water behind them stayed at a normal level,\" said Ana Ruiz, the authority's chief engineer. \"That is exactly what the barrier was built to do.\"",
+      "The barrier took six years to build. Its cost rose by a fifth during construction, the city's audit office reported last year.",
+      "Residents of the low-lying harbour district were asked to stay indoors until the morning. The authority said the gates would reopen at low tide on Thursday."
+    ],
+    "report": {
+      "actors": [
+        {
+          "kind": "person",
+          "mentions": 1,
+          "name": "Ana Ruiz",
+          "quotes": 1
+        }
+      ],
+      "basis": "Full article",
+      "components": [
+        {
+          "detail": "4 independent outlets in 4 countries carry this story: Harbourline, Meridian Courier, Saltmarsh Herald, The Lantern Gazette.",
+          "id": "corroboration",
+          "label": "Corroboration",
+          "max": 30,
+          "points": 26
+        },
+        {
+          "detail": "No emotive or judgement words found.",
+          "id": "wording",
+          "label": "Neutral wording",
+          "max": 25,
+          "points": 25
+        },
+        {
+          "detail": "4 attributed statement(s).",
+          "id": "attribution",
+          "label": "Attributed claims",
+          "max": 20,
+          "points": 17
+        },
+        {
+          "detail": "No one in the story owns or funds the outlet.",
+          "id": "independence",
+          "label": "Independence",
+          "max": 15,
+          "points": 15
+        },
+        {
+          "detail": "Funding model known; no public ownership record found.",
+          "id": "transparency",
+          "label": "Ownership on record",
+          "max": 10,
+          "points": 3
+        }
+      ],
+      "corroboration": {
+        "countries": 4,
+        "independent": 4,
+        "outlets": [
+          "Harbourline",
+          "Meridian Courier",
+          "Saltmarsh Herald",
+          "The Lantern Gazette"
+        ]
+      },
+      "influences": [],
+      "loaded": [],
+      "opinion": false,
+      "outlet": {
+        "country": "Canada",
+        "funders": [],
+        "funding": "public",
+        "funding_text": "Public broadcaster: paid for by a licence fee or public grant, with editorial independence set by law or charter.",
+        "id": "meridian",
+        "name": "Meridian Courier",
+        "owners": [],
+        "wikidata": null
+      },
+      "score": 86,
+      "unattributed": [],
+      "verdict": "Well sourced"
+    }
+  },
+  "prefs": {
+    "blocked_outlets": [],
+    "followed_topics": [
+      "science"
+    ],
+    "muted_topics": [],
+    "onboarded": true
+  },
+  "topics": [
+    {
+      "id": "politics",
+      "label": "Politics",
+      "sensitive": true
+    },
+    {
+      "id": "conflict",
+      "label": "Conflict & security",
+      "sensitive": true
+    },
+    {
+      "id": "migration",
+      "label": "Migration",
+      "sensitive": true
+    },
+    {
+      "id": "religion",
+      "label": "Religion",
+      "sensitive": true
+    },
+    {
+      "id": "health",
+      "label": "Health",
+      "sensitive": true
+    },
+    {
+      "id": "economy",
+      "label": "Economy & business",
+      "sensitive": false
+    },
+    {
+      "id": "climate",
+      "label": "Climate & environment",
+      "sensitive": false
+    },
+    {
+      "id": "science",
+      "label": "Science",
+      "sensitive": false
+    },
+    {
+      "id": "technology",
+      "label": "Technology",
+      "sensitive": false
+    },
+    {
+      "id": "ai",
+      "label": "Artificial intelligence",
+      "sensitive": false
+    },
+    {
+      "id": "justice",
+      "label": "Law & justice",
+      "sensitive": true
+    },
+    {
+      "id": "culture",
+      "label": "Culture & arts",
+      "sensitive": false
+    },
+    {
+      "id": "sport",
+      "label": "Sport",
+      "sensitive": false
+    },
+    {
+      "id": "education",
+      "label": "Education",
+      "sensitive": false
+    }
+  ]
+}

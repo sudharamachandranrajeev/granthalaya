@@ -27,11 +27,8 @@ struct File {
     outlets: Vec<Outlet>,
 }
 
-static OUTLETS: LazyLock<Vec<Outlet>> = LazyLock::new(|| {
-    serde_json::from_str::<File>(include_str!("../data/sources.json"))
-        .expect("bundled sources.json is valid")
-        .outlets
-});
+static OUTLETS: LazyLock<Vec<Outlet>> =
+    LazyLock::new(|| serde_json::from_str::<File>(include_str!("../data/sources.json")).expect("bundled sources.json is valid").outlets);
 
 pub fn outlets() -> &'static [Outlet] {
     &OUTLETS

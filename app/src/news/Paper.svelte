@@ -8,6 +8,9 @@
   import ArticleView from './ArticleView.svelte'
   import { news } from './news.svelte'
 
+  /** Open a past edition (and one story in it) instead of today's. */
+  let { date, story }: { date?: string; story?: string } = $props()
+
   let edition = $state<Edition | null>(null)
   let error = $state<string | null>(null)
   let printing = $state(false)
@@ -43,8 +46,22 @@
     if (e) transition(() => { edition = e; page = 0 })
   }
 
+  async function openPast(d: string, storyId?: string) {
+    try {
+      const e = await api.editionGet(d)
+      if (!e) { error = `No paper was kept for ${d}.`; return }
+      edition = e
+      dates = await api.editionDates()
+      const found = storyId && e.pages.flatMap((p) => p.stories).find((s) => s.story.id === storyId)
+      if (found) reading = found
+    } catch (e) {
+      error = errText(e)
+    }
+  }
+
   onMount(() => {
-    news.load().then(() => { if (news.prefs.onboarded) print() })
+    if (date) news.load().then(() => openPast(date, story))
+    else news.load().then(() => { if (news.prefs.onboarded) print() })
     const key = (e: KeyboardEvent) => {
       if (reading) return
       if (e.key === 'ArrowRight' || e.key === 'PageDown') turn(1)
@@ -94,7 +111,8 @@
         {#each dates as d}<option value={d} selected={d === edition?.date}>{d}</option>{/each}
       </select>
     {/if}
-    {#if edition}<button onclick={() => print(true)} disabled={printing}>Reprint</button>{/if}
+    <button onclick={() => nav.go({ name: 'archive' })}>Archive</button>
+    {#if edition && !date}<button onclick={() => print(true)} disabled={printing}>Reprint</button>{/if}
   </nav>
 
   <div class="press" use:swipe={(d) => turn(d === 'left' ? 1 : -1)}>

@@ -2,7 +2,7 @@
 // (Android back and browser history both pop a screen).
 import { transition } from './motion'
 
-export type Screen = { name: 'home' } | { name: 'paper' } | { name: 'library' } | { name: 'reader'; id: string }
+export type Screen = { name: 'home' } | { name: 'paper'; date?: string; story?: string } | { name: 'archive' } | { name: 'library' } | { name: 'catalogues' } | { name: 'reader'; id: string }
 
 class Nav {
   stack = $state<Screen[]>([{ name: 'home' }])

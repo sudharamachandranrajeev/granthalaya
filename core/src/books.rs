@@ -99,7 +99,8 @@ pub async fn gutenberg(client: &reqwest::Client, search: Option<&str>, topic: Op
     if let Some(t) = topic {
         q.push(("topic", t));
     }
-    let v: Value = client.get("https://gutendex.com/books/").query(&q).send().await?.error_for_status()?.json().await.context("gutendex")?;
+    let v: Value =
+        client.get("https://gutendex.com/books/").query(&q).send().await?.error_for_status()?.json().await.context("gutendex")?;
     Ok(parse_gutendex(&v))
 }
 
@@ -112,7 +113,11 @@ pub fn parse_standard_ebooks(body: &[u8]) -> Result<Vec<Book>> {
             let epub = e
                 .links
                 .iter()
-                .find(|l| l.rel.as_deref() == Some("enclosure") && l.media_type.as_deref() == Some("application/epub+zip") && !l.href.contains("_advanced"))?
+                .find(|l| {
+                    l.rel.as_deref() == Some("enclosure")
+                        && l.media_type.as_deref() == Some("application/epub+zip")
+                        && !l.href.contains("_advanced")
+                })?
                 .href
                 .clone();
             let slug = e.id.trim_start_matches("https://standardebooks.org/ebooks/").to_string();
@@ -138,15 +143,68 @@ pub async fn standard_ebooks(client: &reqwest::Client) -> Result<Vec<Book>> {
 
 const MAX_BOOK: usize = 150 * 1024 * 1024;
 
-/// EPUB files are ZIP archives that start with "PK".
-pub fn check_epub(bytes: &[u8]) -> Result<()> {
+/// Book file kinds the reader opens. The extension is kept on disk because the
+/// reader tells ZIP-based kinds (EPUB, comic, zipped FB2) apart by file name.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Format {
+    Epub,
+    Pdf,
+    Mobi,
+    Fb2,
+    Cbz,
+    Fbz,
+}
+
+impl Format {
+    pub fn ext(self) -> &'static str {
+        match self {
+            Format::Epub => "epub",
+            Format::Pdf => "pdf",
+            Format::Mobi => "mobi",
+            Format::Fb2 => "fb2",
+            Format::Cbz => "cbz",
+            Format::Fbz => "fbz",
+        }
+    }
+
+    /// From a stored file name; old library files without a known extension are EPUB.
+    pub fn of_path(path: &str) -> Format {
+        let lower = path.to_ascii_lowercase();
+        [Format::Pdf, Format::Mobi, Format::Fb2, Format::Cbz, Format::Fbz]
+            .into_iter()
+            .find(|f| lower.ends_with(&format!(".{}", f.ext())))
+            .unwrap_or(Format::Epub)
+    }
+}
+
+/// Check a book file by its contents. `name` is the original file name or URL,
+/// used only to tell ZIP kinds apart (.cbz comics, .fbz zipped FB2).
+pub fn sniff(bytes: &[u8], name: &str) -> Result<Format> {
     if bytes.len() > MAX_BOOK {
         bail!("file is larger than 150 MB");
     }
-    if !bytes.starts_with(b"PK\x03\x04") {
-        bail!("not an EPUB file");
+    let name = name.to_ascii_lowercase();
+    if bytes.starts_with(b"%PDF-") {
+        return Ok(Format::Pdf);
     }
-    Ok(())
+    if bytes.starts_with(b"PK\x03\x04") {
+        return Ok(if name.ends_with(".cbz") {
+            Format::Cbz
+        } else if name.ends_with(".fbz") || name.ends_with(".fb2.zip") {
+            Format::Fbz
+        } else {
+            Format::Epub
+        });
+    }
+    // MOBI and AZW3 share the Palm database header "BOOKMOBI" at byte 60.
+    if bytes.get(60..68) == Some(b"BOOKMOBI") {
+        return Ok(Format::Mobi);
+    }
+    let head = String::from_utf8_lossy(&bytes[..bytes.len().min(1024)]);
+    if head.contains("<FictionBook") {
+        return Ok(Format::Fb2);
+    }
+    bail!("not a book file this library can open (EPUB, PDF, MOBI, AZW3, FB2 or CBZ)")
 }
 
 pub async fn download(client: &reqwest::Client, url: &str) -> Result<Vec<u8>> {
@@ -156,7 +214,9 @@ pub async fn download(client: &reqwest::Client, url: &str) -> Result<Vec<u8>> {
     }
     // Large illustrated books can take a while on a slow link; the shared client's 20s is for feeds.
     let bytes = client.get(url).timeout(std::time::Duration::from_secs(300)).send().await?.error_for_status()?.bytes().await?.to_vec();
-    check_epub(&bytes)?;
+    if sniff(&bytes, url)? != Format::Epub {
+        bail!("the catalogue sent something other than an EPUB");
+    }
     Ok(bytes)
 }
 
@@ -166,11 +226,8 @@ pub fn rank(mut candidates: Vec<Book>, taste: &Taste, liked_subjects: &[String],
     let owned_ids: HashSet<&str> = owned.iter().map(|b| b.id.as_str()).collect();
     let owned_works: HashSet<String> = owned.iter().map(work_key).collect();
     candidates.retain(|b| !owned_ids.contains(b.id.as_str()) && !owned_works.contains(&work_key(b)));
-    let genre_words: Vec<String> = taste
-        .genres
-        .iter()
-        .filter_map(|g| GENRES.iter().find(|(name, _)| name == g).map(|(_, w)| w.to_lowercase()))
-        .collect();
+    let genre_words: Vec<String> =
+        taste.genres.iter().filter_map(|g| GENRES.iter().find(|(name, _)| name == g).map(|(_, w)| w.to_lowercase())).collect();
     let fav: Vec<String> = taste.authors.iter().map(|a| a.to_lowercase()).collect();
     let score = |b: &Book| {
         let subj = b.subjects.join(" ").to_lowercase();
@@ -191,7 +248,11 @@ pub fn rank(mut candidates: Vec<Book>, taste: &Taste, liked_subjects: &[String],
 /// first author's surname, lowercased.
 pub fn work_key(b: &Book) -> String {
     let title = b.title.split([';', ':']).next().unwrap_or("").trim().trim_end_matches(',').to_lowercase();
-    let author = b.authors.first().map(|a| a.split(',').next().unwrap_or(a).trim().rsplit(' ').next().unwrap_or("").to_lowercase()).unwrap_or_default();
+    let author = b
+        .authors
+        .first()
+        .map(|a| a.split(',').next().unwrap_or(a).trim().rsplit(' ').next().unwrap_or("").to_lowercase())
+        .unwrap_or_default();
     format!("{title}|{author}")
 }
 
@@ -217,20 +278,50 @@ mod tests {
 
     #[test]
     fn ranks_favourite_author_then_genre() {
-        let mk = |id: &str, a: &str, s: &str, p| Book { id: id.into(), title: id.into(), authors: vec![a.into()], subjects: vec![s.into()], summary: String::new(), cover: None, epub_url: None, source: String::new(), popularity: p };
+        let mk = |id: &str, a: &str, s: &str, p| Book {
+            id: id.into(),
+            title: id.into(),
+            authors: vec![a.into()],
+            subjects: vec![s.into()],
+            summary: String::new(),
+            cover: None,
+            epub_url: None,
+            source: String::new(),
+            popularity: p,
+        };
         let taste = Taste { genres: vec!["Mystery & detective".into()], authors: vec!["austen".into()], ..Default::default() };
         let owned = vec![mk("owned", "Jane Austen", "x", 5)];
         let mut other_edition = mk("pop2", "X", "Poetry", 50);
         other_edition.title = "pop; or, a subtitle".into();
-        let r = rank(vec![mk("pop", "X", "Poetry", 1_000_000), other_edition, mk("det", "Y", "Detective and mystery stories", 10), mk("aus", "Jane Austen", "Love stories", 5), mk("owned", "Jane Austen", "x", 5)], &taste, &[], &owned);
+        let r = rank(
+            vec![
+                mk("pop", "X", "Poetry", 1_000_000),
+                other_edition,
+                mk("det", "Y", "Detective and mystery stories", 10),
+                mk("aus", "Jane Austen", "Love stories", 5),
+                mk("owned", "Jane Austen", "x", 5),
+            ],
+            &taste,
+            &[],
+            &owned,
+        );
         let ids: Vec<_> = r.iter().map(|b| b.id.as_str()).collect();
         assert_eq!(ids, vec!["aus", "det", "pop"]);
     }
 
     #[test]
-    fn rejects_non_epub_and_foreign_hosts() {
-        assert!(check_epub(b"%PDF-1.7").is_err());
-        assert!(check_epub(b"PK\x03\x04rest").is_ok());
+    fn sniffs_formats_and_rejects_foreign_hosts() {
+        assert_eq!(sniff(b"%PDF-1.7", "a.pdf").unwrap(), Format::Pdf);
+        assert_eq!(sniff(b"PK\x03\x04rest", "a.epub").unwrap(), Format::Epub);
+        assert_eq!(sniff(b"PK\x03\x04rest", "Comic.CBZ").unwrap(), Format::Cbz);
+        assert_eq!(sniff(b"PK\x03\x04rest", "tale.fb2.zip").unwrap(), Format::Fbz);
+        let mut mobi = vec![0u8; 80];
+        mobi[60..68].copy_from_slice(b"BOOKMOBI");
+        assert_eq!(sniff(&mobi, "x.azw3").unwrap(), Format::Mobi);
+        assert_eq!(sniff(b"<?xml version=\"1.0\"?><FictionBook>", "x").unwrap(), Format::Fb2);
+        assert!(sniff(b"hello", "notes.txt").is_err());
+        assert_eq!(Format::of_path("/lib/local_ab.pdf"), Format::Pdf);
+        assert_eq!(Format::of_path("/lib/gutenberg_1.epub"), Format::Epub);
         let rt = tokio::runtime::Runtime::new().unwrap();
         assert!(rt.block_on(download(&crate::feeds::client(), "https://evil.example/x.epub")).is_err());
     }

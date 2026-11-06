@@ -125,12 +125,13 @@ html[data-nav='back']::view-transition-new(root) { animation-name: vt-out-rev; }
 
 .backbar {
   position: sticky; top: 0; z-index: 20;
-  display: flex; align-items: center; gap: 0.75rem;
+  /* Wraps onto a second row on narrow phones instead of pushing buttons off-screen. */
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem;
   padding: calc(env(safe-area-inset-top) + 0.6rem) 1rem 0.6rem;
   background: linear-gradient(var(--desk), color-mix(in srgb, var(--desk) 85%, transparent));
   color: var(--paper);
   font-family: var(--font-type);
   backdrop-filter: blur(6px);
 }
-.backbar button { background: none; border: 1px solid color-mix(in srgb, var(--paper) 40%, transparent); color: var(--paper); border-radius: 6px; padding: 0.35em 0.8em; }
+.backbar button { white-space: nowrap; background: none; border: 1px solid color-mix(in srgb, var(--paper) 40%, transparent); color: var(--paper); border-radius: 6px; padding: 0.35em 0.8em; }
 .backbar .spacer { flex: 1; }

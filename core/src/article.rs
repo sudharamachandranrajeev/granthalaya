@@ -25,7 +25,9 @@ mod tests {
     #[test]
     fn extracts_main_text_without_navigation() {
         let body = "<p>The council voted on Tuesday to rebuild the old bridge across the river after years of delay.</p>".repeat(6);
-        let html = format!("<html><head><title>Bridge</title></head><body><nav><a href='/'>Home</a> <a href='/x'>Sport</a></nav><article><h1>Bridge to be rebuilt</h1>{body}</article><footer>Copyright</footer></body></html>");
+        let html = format!(
+            "<html><head><title>Bridge</title></head><body><nav><a href='/'>Home</a> <a href='/x'>Sport</a></nav><article><h1>Bridge to be rebuilt</h1>{body}</article><footer>Copyright</footer></body></html>"
+        );
         let p = super::extract(&html, "https://example.org/bridge").unwrap();
         assert!(p.iter().any(|x| x.starts_with("The council voted")), "{p:?}");
         assert!(p.iter().all(|x| !x.contains("Copyright")));

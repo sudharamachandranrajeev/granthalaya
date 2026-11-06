@@ -60,8 +60,7 @@ pub fn parse(outlet: &Outlet, feed: &Feed, body: &[u8]) -> Result<Vec<Story>> {
     let parsed = feed_rs::parser::parse(body).context("feed did not parse")?;
     let mut out = Vec::new();
     for e in parsed.entries {
-        let Some(link) = e.links.iter().find(|l| l.rel.as_deref().is_none_or(|r| r == "alternate")).or(e.links.first())
-        else {
+        let Some(link) = e.links.iter().find(|l| l.rel.as_deref().is_none_or(|r| r == "alternate")).or(e.links.first()) else {
             continue;
         };
         let url = link.href.trim().to_string();
@@ -73,11 +72,7 @@ pub fn parse(outlet: &Outlet, feed: &Feed, body: &[u8]) -> Result<Vec<Story>> {
         if title.split_whitespace().count() < 4 || out.iter().any(|s: &Story| s.title == title) {
             continue;
         }
-        let summary_html = e
-            .summary
-            .map(|s| s.content)
-            .or_else(|| e.content.and_then(|c| c.body))
-            .unwrap_or_default();
+        let summary_html = e.summary.map(|s| s.content).or_else(|| e.content.and_then(|c| c.body)).unwrap_or_default();
         let mut summary = text::strip_html(&summary_html);
         if summary.chars().count() > 600 {
             summary = summary.chars().take(600).collect::<String>() + "…";
@@ -85,7 +80,12 @@ pub fn parse(outlet: &Outlet, feed: &Feed, body: &[u8]) -> Result<Vec<Story>> {
         let image = e
             .media
             .iter()
-            .flat_map(|m| m.thumbnails.iter().map(|t| t.image.uri.clone()).chain(m.content.iter().filter_map(|c| c.url.as_ref().map(|u| u.to_string()))))
+            .flat_map(|m| {
+                m.thumbnails
+                    .iter()
+                    .map(|t| t.image.uri.clone())
+                    .chain(m.content.iter().filter_map(|c| c.url.as_ref().map(|u| u.to_string())))
+            })
             .find(|u| u.starts_with("https://"));
         let topics = topics::tag(&title, &summary).into_iter().map(String::from).collect();
         out.push(Story {
@@ -117,14 +117,8 @@ pub async fn fetch(client: &reqwest::Client, outlet: &Outlet, feed: &Feed) -> Re
 }
 
 async fn fetch_once(client: &reqwest::Client, outlet: &Outlet, feed: &Feed) -> Result<Vec<Story>> {
-    let body = client
-        .get(&feed.url)
-        .send()
-        .await
-        .with_context(|| format!("{}: request failed", outlet.name))?
-        .error_for_status()?
-        .bytes()
-        .await?;
+    let body =
+        client.get(&feed.url).send().await.with_context(|| format!("{}: request failed", outlet.name))?.error_for_status()?.bytes().await?;
     parse(outlet, feed, &body)
 }
 

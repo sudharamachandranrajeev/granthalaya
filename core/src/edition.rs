@@ -111,7 +111,8 @@ fn page_for(s: &Story) -> &'static str {
     }
 }
 
-const PAGE_ORDER: &[&str] = &["World", "Business", "Science & Technology", "Health", "Investigations", "Ideas & Analysis", "Culture", "Sport"];
+const PAGE_ORDER: &[&str] =
+    &["World", "Business", "Science & Technology", "Health", "Investigations", "Ideas & Analysis", "Culture", "Sport"];
 
 pub struct BuildInput<'a> {
     pub stories: Vec<Story>,
@@ -135,7 +136,10 @@ pub fn build(i: BuildInput) -> Edition {
         .filter(|s| seen.insert(s.id.clone()))
         .collect();
     let facts_of = |s: &Story| {
-        i.facts.get(&s.outlet_id).cloned().unwrap_or_else(|| sources::outlet(&s.outlet_id).map(crate::wikidata::base_facts).unwrap_or_default())
+        i.facts
+            .get(&s.outlet_id)
+            .cloned()
+            .unwrap_or_else(|| sources::outlet(&s.outlet_id).map(crate::wikidata::base_facts).unwrap_or_default())
     };
 
     let mut items: Vec<(EditionStory, f64, f64)> = Vec::new();
@@ -149,7 +153,14 @@ pub fn build(i: BuildInput) -> Edition {
         let mut scored: Vec<(&Story, Report)> = group
             .iter()
             .map(|s| {
-                let r = bias::assess(bias::Input { title: &s.title, text: &s.summary, url: &s.url, full_text: false, outlet: facts_of(s), cluster: cluster_facts.clone() });
+                let r = bias::assess(bias::Input {
+                    title: &s.title,
+                    text: &s.summary,
+                    url: &s.url,
+                    full_text: false,
+                    outlet: facts_of(s),
+                    cluster: cluster_facts.clone(),
+                });
                 (*s, r)
             })
             .collect();
@@ -168,7 +179,12 @@ pub fn build(i: BuildInput) -> Edition {
         }
         let others = scored
             .into_iter()
-            .map(|(s, _)| Telling { story_id: s.id.clone(), outlet_name: s.outlet_name.clone(), title: s.title.clone(), url: s.url.clone() })
+            .map(|(s, _)| Telling {
+                story_id: s.id.clone(),
+                outlet_name: s.outlet_name.clone(),
+                title: s.title.clone(),
+                url: s.url.clone(),
+            })
             .collect();
         let sensitive = topics::is_sensitive(&lead.topics);
         items.push((EditionStory { story: lead.clone(), report, interest, why, others, sensitive }, interest, importance));
@@ -195,7 +211,11 @@ pub fn build(i: BuildInput) -> Edition {
         }
         let e = &items[idx].0;
         let t = e.story.topics.first().cloned().unwrap_or_default();
-        if front.contains(&idx) || !front_ok(e) || topic_count.get(&t).copied().unwrap_or(0) >= 2 || outlet_count.get(&e.story.outlet_id).copied().unwrap_or(0) >= 2 {
+        if front.contains(&idx)
+            || !front_ok(e)
+            || topic_count.get(&t).copied().unwrap_or(0) >= 2
+            || outlet_count.get(&e.story.outlet_id).copied().unwrap_or(0) >= 2
+        {
             continue;
         }
         *topic_count.entry(t).or_default() += 1;
@@ -252,7 +272,12 @@ mod tests {
         }
     }
 
-    fn input<'a>(stories: Vec<Story>, prefs: &'a Prefs, facts: &'a HashMap<String, OutletFacts>, w: &'a HashMap<String, f64>) -> BuildInput<'a> {
+    fn input<'a>(
+        stories: Vec<Story>,
+        prefs: &'a Prefs,
+        facts: &'a HashMap<String, OutletFacts>,
+        w: &'a HashMap<String, f64>,
+    ) -> BuildInput<'a> {
         BuildInput { stories, facts, weights: w, prefs, now: Utc::now(), number: 1, sources_ok: vec![], sources_failed: vec![] }
     }
 

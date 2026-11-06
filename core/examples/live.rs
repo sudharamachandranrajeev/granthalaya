@@ -17,19 +17,41 @@ async fn main() {
         Ok(list) => {
             println!("wikidata facts for {} outlets in {:?}", list.len(), t.elapsed());
             for f in list {
-                println!("{}: owners {:?} funders {:?}", f.name, f.owners.iter().map(|l| &l.label).collect::<Vec<_>>(), f.funders.iter().map(|l| &l.label).collect::<Vec<_>>());
+                println!(
+                    "{}: owners {:?} funders {:?}",
+                    f.name,
+                    f.owners.iter().map(|l| &l.label).collect::<Vec<_>>(),
+                    f.funders.iter().map(|l| &l.label).collect::<Vec<_>>()
+                );
                 facts.insert(f.id.clone(), f);
             }
         }
         Err(e) => println!("wikidata failed {e}"),
     }
     let t = std::time::Instant::now();
-    let e = edition::build(edition::BuildInput { stories, facts: &facts, weights: &HashMap::new(), prefs: &Default::default(), now: chrono::Utc::now(), number: 1, sources_ok: ok, sources_failed: failed });
+    let e = edition::build(edition::BuildInput {
+        stories,
+        facts: &facts,
+        weights: &HashMap::new(),
+        prefs: &Default::default(),
+        now: chrono::Utc::now(),
+        number: 1,
+        sources_ok: ok,
+        sources_failed: failed,
+    });
     println!("built in {:?}", t.elapsed());
     for p in &e.pages {
         println!("\n== {} ({})", p.title, p.stories.len());
         for s in &p.stories {
-            println!("  [{:>3} {}] {} — {} (+{} tellings; {})", s.report.score, s.report.verdict, s.story.title, s.story.outlet_name, s.others.len(), s.story.topics.join(","));
+            println!(
+                "  [{:>3} {}] {} — {} (+{} tellings; {})",
+                s.report.score,
+                s.report.verdict,
+                s.story.title,
+                s.story.outlet_name,
+                s.others.len(),
+                s.story.topics.join(",")
+            );
         }
     }
     let lead = &e.pages[0].stories[0];
