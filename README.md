@@ -150,7 +150,8 @@ change it made is listed under **Aa**.
   `cargo run -p granthalaya-core --example live`.
 - `app/` – the Tauri 2 shell and the Svelte 5 interface. `npm run check` type-checks it.
 - `npx tauri dev` runs it with live reload. `npx tauri android build --debug` builds an
-  Android test APK (needs the Android SDK and NDK).
+  Android test APK (needs the Android SDK and NDK, and Java 17 to 21: point `JAVA_HOME` at it
+  if your system Java is newer, or the build stops with "Unsupported class file major version").
 </details>
 
 ## License
