@@ -53,7 +53,7 @@ nets="$(printf '%s\n' "$text" | grep -aoiE '[a-z0-9-]+\.[a-z0-9-]+\.ts\.net' | g
 
 mails="$(printf '%s\n' "$text" | grep -aoiE '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}' |
   grep -viE '@(users\.noreply\.github\.com|example\.(com|org|net))$|^noreply@anthropic\.com$' |
-  grep -viE '@[0-9]x\.(png|jpe?g|webp)$' | sort -u || true)"
+  grep -viE '@[0-9]x(-[0-9]+)?\.(png|jpe?g|webp)$' | sort -u || true)"
 [[ -z $mails ]] || flag "e-mail addresses: $(tr '\n' ' ' <<<"$mails")"
 
 deny="${XDG_CONFIG_HOME:-$HOME/.config}/granthalaya/denylist"
