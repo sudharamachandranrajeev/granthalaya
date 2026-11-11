@@ -16,7 +16,7 @@ use crate::{text, topics};
 /// Plain product token. Some newsrooms (CBC) stall requests whose agent carries a URL.
 pub const USER_AGENT: &str = "Granthalaya/0.1";
 /// Wikimedia asks automated clients to name a contact; used for Wikidata only.
-pub const CONTACT_USER_AGENT: &str = "Granthalaya/0.1 (https://github.com/sudharamachandranrajeev/granthalaya)";
+pub const CONTACT_USER_AGENT: &str = "Granthalaya/0.1 (https://github.com/sudharamachandranrajeev/granthalaya-retro-reader)";
 
 pub fn client() -> reqwest::Client {
     reqwest::Client::builder()

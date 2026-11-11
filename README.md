@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/sudharamachandranrajeev/granthalaya"><img src="app/branding/icon.svg" alt="Granthālaya" width="140"></a>
+  <a href="https://github.com/sudharamachandranrajeev/granthalaya-retro-reader"><img src="app/branding/icon.svg" alt="Granthālaya" width="140"></a>
   <br>
   Granthālaya
   <br>
@@ -9,7 +9,7 @@
 <h4 align="center">A daily newspaper that shows the evidence behind every story, and a library that reads like paper.</h4>
 
 <p align="center">
-  <a href="https://github.com/sudharamachandranrajeev/granthalaya/releases"><img src="https://img.shields.io/github/v/release/sudharamachandranrajeev/granthalaya?include_prereleases&label=release&color=e8a33d" alt="Latest release"></a>
+  <a href="https://github.com/sudharamachandranrajeev/granthalaya-retro-reader/releases"><img src="https://img.shields.io/github/v/release/sudharamachandranrajeev/granthalaya-retro-reader?include_prereleases&label=release&color=e8a33d" alt="Latest release"></a>
   <img src="https://img.shields.io/badge/works%20on-Linux%20%7C%20Windows%20%7C%20macOS%20%7C%20Android-555" alt="Works on Linux, Windows, macOS and Android">
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-2e7d32" alt="Licence MIT"></a>
 </p>
@@ -92,7 +92,7 @@ The screenshots use made-up newsrooms, stories and a made-up book.
 
 ### Step 1: Download
 
-Open the [releases page](https://github.com/sudharamachandranrajeev/granthalaya/releases) and
+Open the [releases page](https://github.com/sudharamachandranrajeev/granthalaya-retro-reader/releases) and
 pick the file for your device:
 
 | Platform | File to pick | Works on |
